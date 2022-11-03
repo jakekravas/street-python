@@ -16,3 +16,8 @@ class Park:
         self._foliage = foliage
         self._height = 4
 
+class Building:
+    def __init__(self, width, height, brick):
+        self._width = width
+        self._height = height
+        self._brick = brick
