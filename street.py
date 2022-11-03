@@ -7,4 +7,12 @@
     user-inputted string
 """
 
+class Park:
+    """
+        Holds data of parks
+    """
+    def __init__(self, width, foliage):
+        self._width = width
+        self._foliage = foliage
+        self._height = 4
 
