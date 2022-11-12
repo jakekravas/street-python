@@ -175,6 +175,7 @@ def get_street_elements(street):
             trash = street_list[0].split(',')[1]
             return [Lot(width, trash)] + get_street_elements(rest_of_street)
 
+
 def get_street_height(street_elements, street_height):
     """
         Returns height of tallest element on street
@@ -190,9 +191,22 @@ def get_street_height(street_elements, street_height):
     return get_street_height(street_elements[1:], street_height)
 
 
+def get_street_width(street_elements):
+    """
+        Returns integer representing
+        width (# of columns) of street
+    """
+
+    if street_elements == []:
+        return 0
+
+    return street_elements[0]._width + get_street_width(street_elements[1:])
+
 def main():
 
     street = input('Street: ')
     street_elements = get_street_elements(street)
-
+    street_height = get_street_height(street_elements, 0)
+    street_width = get_street_width(street_elements)
+    
 main()
