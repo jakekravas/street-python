@@ -202,11 +202,44 @@ def get_street_width(street_elements):
 
     return street_elements[0]._width + get_street_width(street_elements[1:])
 
+def get_street_design(street_elements, street_height, current_height):
+    """
+        Returns list of rows of street design
+    """
+
+    # if current height is greater than
+    # street height, return list
+    if current_height > street_height:
+        return []
+
+    # string of street at given height
+    street_line = get_street_elements_at_height(street_elements, current_height)
+
+    # add street_line to list and call function recursively
+    # with current_height incremented by 1
+    return [street_line] + get_street_design(street_elements, street_height, current_height+1)
+
+
+def get_street_elements_at_height(street_elements, height):
+    """
+        Gets display string of all
+        street elements at specified height
+    """
+    
+    if not street_elements:
+        return []
+
+    # row of entire street of given height
+    street_row = street_elements[0].at_height(height)
+
+    return [street_row] + get_street_elements_at_height(street_elements[1:], height)
+
+
 def main():
 
     street = input('Street: ')
     street_elements = get_street_elements(street)
     street_height = get_street_height(street_elements, 0)
     street_width = get_street_width(street_elements)
-    
+
 main()
